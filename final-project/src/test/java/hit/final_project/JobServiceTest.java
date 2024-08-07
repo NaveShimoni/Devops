@@ -1,4 +1,5 @@
 package hit.final_project;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -46,5 +47,6 @@ public class JobServiceTest {
         Optional<Job> retrievedJob = JobService.getJobById(1L);
         assertTrue(retrievedJob.isPresent());
         assertEquals(1L, retrievedJob.get().getId());
-    
+
+    }
 }
