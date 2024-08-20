@@ -14,6 +14,12 @@ services:
       - app-network
     volumes:
       - cd-server-data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/login"]  # Adjust the health check URL as needed
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 5s
 
   redis:
     image: "redis:latest"
@@ -44,7 +50,8 @@ services:
       context: ./tester
     container_name: tester
     depends_on:
-      - cd-server
+      cd-server:
+          condition: service_healthy
     networks:
       - app-network
     volumes:

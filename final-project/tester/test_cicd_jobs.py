@@ -31,6 +31,7 @@ def get_csrf_token(session, login_url):
     response = session.get(login_url)
     soup = BeautifulSoup(response.text, 'html.parser')
     csrf_token = soup.find('input', {'name': '_csrf'}).get('value')
+    logger.info(f"CSRF Token: {csrf_token}")
     return csrf_token
 
 # Fixtures

@@ -39,34 +39,36 @@
 //     }
 
 //     @Test
-//     void testCreateJob() throws Exception {
+//     void testCreateJob() {
 //         Job job = new Job();
-//         job.setJobName("Integration Test Job");
+//         job.setJobName("Test Job");
+//         when(JobRepository.save(any(Job.class))).thenReturn(job);
 
-//         logger.info("Running testCreateJob");
-
-//         when(jobService.createJob(job)).thenReturn(job);
-
-//         mockMvc.perform(post("/jobs")
-//                 .contentType(MediaType.APPLICATION_JSON)
-//                 .content("{\"jobName\":\"Integration Test Job\"}"))
-//                 .andExpect(status().isCreated())
-//                 .andExpect(jsonPath("$.jobName").value("Integration Test Job"));
+//         Job createdJob = JobService.createJob(job);
+//         assertNotNull(createdJob);
+//         assertEquals("Test Job", createdJob.getJobName());
 //     }
 
-//     @Test
-//     void testGetJobById() throws Exception {
+//      @Test
+//     void testGetJobById() {
 //         Job job = new Job();
 //         job.setId(1L);
-//         job.setJobName("Existing Job");
+//         when(JobRepository.findById(1L)).thenReturn(Optional.of(job));
 
-//         logger.info("Running testGetJobById");
+//         Optional<Job> retrievedJob = JobService.getJobById(1L);
+//         assertTrue(retrievedJob.isPresent());
+//         assertEquals(1L, retrievedJob.get().getId());
 
-//         when(jobService.getJobById(1L)).thenReturn(Optional.of(job));
+//     }
 
-//         mockMvc.perform(get("/jobs/1"))
-//                 .andExpect(status().isOk())
-//                 .andExpect(jsonPath("$.jobName").value("Existing Job"));
+//      @Test
+//     void testGetAllJobs() {
+//         List<Job> jobs = Arrays.asList(new Job(), new Job());
+//         when(JobRepository.findAll()).thenReturn(jobs);
+
+//         List<Job> retrievedJobs = JobService.getAllJobs();
+//         assertNotNull(retrievedJobs);
+//         assertEquals(2, retrievedJobs.size());
 //     }
 
 //     @Test

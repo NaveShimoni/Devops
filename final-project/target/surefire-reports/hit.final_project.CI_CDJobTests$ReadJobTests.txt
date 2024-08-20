@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: hit.final_project.CI_CDJobTests$ReadJobTests
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.107 s -- in hit.final_project.CI_CDJobTests$ReadJobTests
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.106 s -- in hit.final_project.CI_CDJobTests$ReadJobTests

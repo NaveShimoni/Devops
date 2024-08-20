@@ -92,24 +92,6 @@ public class CI_CDJobTests {
         }
     }
 
-    // @Nested
-    // class UpdateJobTests {
-
-    //     @Test
-    //     void testUpdateJob() {
-    //         logger.info("Running testUpdateJob");
-    //         Job job = new Job();
-    //         job.setId(1L);
-    //         job.setJobName("Updated Job Name");
-
-    //         when(jobRepository.existsById(1L)).thenReturn(true);
-    //         when(jobRepository.save(any(Job.class))).thenReturn(job);
-
-    //         Optional<Job> updatedJob = jobService.updateJob(1L, job);
-    //         assertTrue(updatedJob.isPresent(), "The job should be present after update");
-    //         assertEquals("Updated Job Name", updatedJob.get().getJobName(), "Job name should be updated");
-    //     }
-    // }
 
     @Nested
     class DeleteJobTests {

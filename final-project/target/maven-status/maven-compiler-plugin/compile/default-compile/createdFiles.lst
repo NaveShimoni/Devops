@@ -2,7 +2,6 @@ hit\final_project\WebSecurityConfig.class
 hit\final_project\FinalProjectApplication.class
 hit\final_project\DatabaseSeeder.class
 hit\final_project\JobService.class
-hit\final_project\CICDJobDTO.class
 hit\final_project\Job.class
 hit\final_project\exceptions\JobNotFoundException.class
 hit\final_project\JobRepository.class
