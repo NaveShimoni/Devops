@@ -3,7 +3,7 @@ import requests
 import logging
 from bs4 import BeautifulSoup
 
-# Configure Logger
+
 logging.basicConfig(
     level=logging.DEBUG,
     format='%(asctime)s %(levelname)s %(message)s',
@@ -11,7 +11,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Utility function to log HTTP responses
+
 def log_http_response(response):
     logger.info(f"Status Code: {response.status_code}")
     content_type = response.headers.get('Content-Type', '')
@@ -26,7 +26,7 @@ def log_http_response(response):
         logger.warning("Response is not in JSON format")
         logger.info(f"Response Text: {response.text}")
 
-# Function to extract CSRF token from the login page
+
 def get_csrf_token(session, login_url):
     response = session.get(login_url)
     soup = BeautifulSoup(response.text, 'html.parser')
@@ -34,19 +34,19 @@ def get_csrf_token(session, login_url):
     logger.info(f"CSRF Token: {csrf_token}")
     return csrf_token
 
-# Fixtures
+
 @pytest.fixture(scope='module')
 def session():
     session = requests.Session()
     login_url = "http://cd-server:8080/login"
     
-    # Get the CSRF token
+
     csrf_token = get_csrf_token(session, login_url)
     
     credentials = {
         "username": "admin",
         "password": "admin",
-        "_csrf": csrf_token  # Include the CSRF token in the login request
+        "_csrf": csrf_token
     }
     response = session.post(login_url, data=credentials)
     log_http_response(response)
@@ -57,7 +57,7 @@ def session():
 def base_url():
     return "http://cd-server:8080/jobs"
 
-# Test functions
+
 def test_get_all_jobs(session, base_url):
     response = session.get(base_url)
     logger.info("Testing: Get All Jobs")
@@ -70,7 +70,7 @@ def test_create_job(session, base_url):
         "status": "NEW",
         "jobType": "BUILD"
     }
-    # Extract CSRF token again if required
+
     csrf_token = get_csrf_token(session, "http://cd-server:8080/login")
     headers = {
         'X-CSRF-Token': csrf_token
@@ -92,7 +92,7 @@ def test_update_job_status(session, base_url):
     updated_status = {
         "status": "IN_PROGRESS"
     }
-    # Extract CSRF token again if required
+
     csrf_token = get_csrf_token(session, "http://cd-server:8080/login")
     headers = {
         'X-CSRF-Token': csrf_token
@@ -104,7 +104,7 @@ def test_update_job_status(session, base_url):
 
 def test_delete_job(session, base_url):
     job_id = 1
-    # Extract CSRF token again if required
+
     csrf_token = get_csrf_token(session, "http://cd-server:8080/login")
     headers = {
         'X-CSRF-Token': csrf_token

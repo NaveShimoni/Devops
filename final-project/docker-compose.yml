@@ -15,7 +15,7 @@ services:
     volumes:
       - cd-server-data:/data
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/login"]  # Adjust the health check URL as needed
+      test: ["CMD", "curl", "-f", "http://localhost:8080/login"] 
       interval: 10s
       retries: 5
       start_period: 30s

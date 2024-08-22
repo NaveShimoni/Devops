@@ -94,7 +94,6 @@ public class JobServiceTest {
 
         JobService.deleteJob(1L);
 
-        // Verify that the deleteById method was called on the repository
         verify(JobRepository).deleteById(1L);
     }
 

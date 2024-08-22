@@ -23,7 +23,6 @@ public class Job {
 
     public Job(){}
     public Job(String name, String status, LocalDateTime createdAt, LocalDateTime updatedAt, String type) {
-//        this.id = // need to generate id;
         this.jobName = name;
         this.status = status;
         this.createdAt = createdAt;
